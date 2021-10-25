@@ -9,8 +9,10 @@
         <title>Document</title>
 
         <!-- including font family decl -->
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-
+        <link
+            href="https://fonts.googleapis.com/css?family=Open+Sans"
+            rel="stylesheet"
+        />
 
         <!-- linking stylesheet -->
         <link rel="stylesheet" href="styles/style.css" />
@@ -43,5 +45,32 @@
         </ol>
 
         <a href="google.com">google link</a>
+
+        <!-- Part 0.3: Forms -->
+        <form action="/my-handling-contact-form-page" method="post">
+            <ul>
+                <li>
+                    <label for="name">Name:</label>
+                    <input type="text" name="name" id="name" />
+                </li>
+                <li>
+                    <label for="email">Email:</label>
+                    <input type="email" name="email" id="email" />
+                </li>
+                <li>
+                    <label for="message">Message:</label>
+                    <textarea name="message" id="message" rows="10" cols="30">
+by default this text is filled here</textarea
+                    >
+                </li>
+                <li class="button">
+                    <button type="submit">Submit</button>
+                </li>
+            </ul>
+        </form>
+        <!-- Form data is sent to the server as name/value pairs -->
+
+        <!-- server side: url with /my-handling-contact-form-page will recieve form with user_name, user_email, user_message -->
+        
     </body>
 </html>
