@@ -1,0 +1,44 @@
+/* Test for 0.2 */
+
+html {
+    font-size: 10px; /* px means "pixels": the base font size is now 10 pixels high  */
+    font-family: "Open Sans", sans-serif; /* this should be the rest of the output you got from Google fonts */
+}
+
+a {
+    color: red;
+}
+
+/* different types of selectors */
+/* element selector */
+
+h1 {
+    font-size: 60px;
+    text-align: center;
+}
+
+p,
+li {
+    font-size: 16px;
+    line-height: 2;
+    letter-spacing: 1px;
+}
+
+/* id selector */
+/* class selector */
+
+/* attribute selector */
+/* e.g. img[src] */
+/* ^ selects image src [src] and not regular imgs */
+
+/* pseudo-class selector e.g. a:hover */
+
+
+/* box model 
+
+padding: space around inside of content
+border: line outisde the padding; around the element
+margin: space around the element
+
+*/
+
