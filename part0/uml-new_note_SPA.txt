@@ -1,0 +1,7 @@
+#0.6 new note with SPA
+
+- Form doesn't have action and method for url and HTTP method
+- POST request sent to server once user clicks on submit button
+- Request has content typer header of JSON
+- Server responds with status 201
+- Browser stays on the same page and redraws the notes through JS w/out redirect

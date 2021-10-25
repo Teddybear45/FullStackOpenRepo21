@@ -1,0 +1,5 @@
+#0.5 user goes to SPA app of notes app
+
+- User goes to notes app
+- User fetches fetches one HTML page and its content is manipulated by JS
+- JS manipulates once the GET request for the notes are made
