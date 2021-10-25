@@ -1,0 +1,11 @@
+#0.4
+
+- The form has the attributes of action and method for the url and http action
+- User inputs text into the text field name named user_name
+- User inputs email into the field named user_email
+- User inputs message into the field named user_message
+- User clicks the button named submit
+- HTTP POST request is sent to the server
+- POST request will have the body of 3 key value pairs (name, email, message) with the 
+field names being the keys and values being the input of the form message
+- Server with url of the same /... will handle the request and return a response
