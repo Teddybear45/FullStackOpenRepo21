@@ -35,6 +35,20 @@ const HelloArray = (props) => {
     ];
 };
 
+//duplicate of HelloArray except with a fragment
+const HelloArrayFragment = (props) => {
+    return (
+        <>
+            <h2>Greeting</h2>
+            <h1>Hello {props.name} this is from the array with a fragment</h1>
+            <HelloWithProps
+                name={props.name}
+                email="ComponentsArray@mail.com "
+            />
+        </>
+    );
+};
+
 function App() {
     console.log("App.js is running");
 
@@ -70,6 +84,11 @@ function App() {
             {/* tests HelloArray which consists of an array of components including the previous HelloWithProps */}
             <section className="App-fifth-section">
                 <HelloArray name="Tiffany" />
+            </section>
+            {/* tests HelloArrayFragment which contains HelloArray contained inside of a fragment */}
+            {/* note that fragments useful to remove dom clutter when is the root element */}
+            <section className="App-sixth-section">
+                <HelloArrayFragment name="Tiffany2.0" />
             </section>
         </div>
     );
