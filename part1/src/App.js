@@ -1,6 +1,8 @@
 import "./App.css";
 
 // modifications
+
+// New Component
 const Hello = () => {
     return (
         <div>
@@ -9,30 +11,45 @@ const Hello = () => {
     );
 };
 
+// Component which passes in props
+const HelloWithProps = (props) => {
+    return (
+        <div>
+            <h1>Hello {props.name}</h1>
+            <h2>
+                Second prop email address of {props.name} is {props.email}
+            </h2>
+        </div>
+    );
+};
+
 function App() {
     console.log("App.js is running");
+
+    // const variables to hard code prop values
+    const hardcodedName = "Sara";
+    const hardcodedEmail = "saratester@mail.com";
 
     // declared variables for App
     const filler_text_generated = "the quick brown fox: this is const";
 
     return (
         <div className="App">
-            {/* <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header> */}
             <section className="App-first-section">
                 <p>filler text default no edit</p>
                 <p>{filler_text_generated}</p>
+            </section>
+
+            <section className="App-second-section">
+                <Hello />
+            </section>
+
+            <section className="App-third-section">
+                <HelloWithProps name="John" email="johnappleseed@mail.com" />
+            </section>
+
+            <section className="App-fourth-section">
+                <HelloWithProps name={hardcodedName} email={hardcodedEmail} />
             </section>
         </div>
     );
