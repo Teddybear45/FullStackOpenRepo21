@@ -1,4 +1,4 @@
-#0.5 user goes to SPA app of notes app
+#0.5 user goes to SPA (single page application) app of notes app
 
 - User goes to notes app
 - User fetches fetches one HTML page and its content is manipulated by JS
