@@ -10,7 +10,7 @@ console.log(arrT[2]); // 3 is the result
 
 // itertate through the array and print each element
 arrT.forEach((value) => {
-  console.log(value);
+    console.log(value);
 });
 
 //React prefers the use of immutable data structs
@@ -45,5 +45,3 @@ const t2 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
 const [first2, second2, second3, ...rest2] = t2; // first = 1, second = 2, rest = [3,4,5]
 console.log(first2, second2, second3); // 1, 2, 3
 console.log(rest2); // [3,4,5,6,7,8,9,10,11,12,13,14,15] because rest is an array returned by the spread operator
-
-

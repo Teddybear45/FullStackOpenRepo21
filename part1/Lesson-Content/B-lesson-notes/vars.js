@@ -12,7 +12,4 @@ y = "sometext";
 
 let z = 5;
 
-console.log(z, x ,y); // 5, 1, sometext are printed
-
-
-
+console.log(z, x, y); // 5, 1, sometext are printed
