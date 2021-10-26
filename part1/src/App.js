@@ -23,6 +23,18 @@ const HelloWithProps = (props) => {
     );
 };
 
+//JSX components' first letter must be capitalized
+
+//testing array of React components returned by function
+const HelloArray = (props) => {
+    return [
+        <h2>Greeting</h2>,
+        // greet the user with prop name
+        <h1>Hello {props.name} this is from the array</h1>,
+        <HelloWithProps name={props.name} email="ComponentssArray@mail.com" />,
+    ];
+};
+
 function App() {
     console.log("App.js is running");
 
@@ -35,21 +47,29 @@ function App() {
 
     return (
         <div className="App">
+            {/* passed in hardcoded variable from function */}
             <section className="App-first-section">
                 <p>filler text default no edit</p>
                 <p>{filler_text_generated}</p>
             </section>
 
+            {/* jsx component */}
             <section className="App-second-section">
                 <Hello />
             </section>
 
+            {/* tests props passed into jsx component */}
             <section className="App-third-section">
                 <HelloWithProps name="John" email="johnappleseed@mail.com" />
             </section>
 
+            {/* tests hardcoded passed in props */}
             <section className="App-fourth-section">
                 <HelloWithProps name={hardcodedName} email={hardcodedEmail} />
+            </section>
+            {/* tests HelloArray which consists of an array of components including the previous HelloWithProps */}
+            <section className="App-fifth-section">
+                <HelloArray name="Tiffany" />
             </section>
         </div>
     );
