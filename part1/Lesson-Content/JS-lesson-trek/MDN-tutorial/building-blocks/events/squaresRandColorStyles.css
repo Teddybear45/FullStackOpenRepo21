@@ -1,0 +1,11 @@
+.flexes {
+	display: flex;
+	flex-wrap: wrap;
+  justify-content: flex-start;
+
+}
+div {
+  width: 200px;
+  height: 200px;
+}
+
