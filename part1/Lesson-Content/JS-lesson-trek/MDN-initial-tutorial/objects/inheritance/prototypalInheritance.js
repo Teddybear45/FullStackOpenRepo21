@@ -9,6 +9,7 @@ function Person(first, last, age, gender, interests) {
   this.age = age;
   this.gender = gender;
   this.interests = interests;
+
 };
 
 // all methods are defined on the constructor's prototype 
@@ -48,6 +49,38 @@ console.log(Teacher.prototype.greeting) //teacher's prototype (template) didn't 
 
 
 //we need to get Teacher to inherit the method defined in the Person()'s prototype
-Teacher.prototype = Object.create(Person.prototype);
+Teacher.prototype = Object.create(Person.prototype); // this is another problem where the consturctor property of Teacher.prototype is now equal to Person()
+
+//fixed through defining property of the Teacher prototype with constructor
+Object.defineProperty(Teacher.prototype, "constructor", {
+  value: Teacher,
+  enumerable: false, //makes it not iterable
+  writable: true,
+});
+
+
+console.log(Teacher.prototype.constructor);
+
+//adding a function to the Teacher() constructor
+Teacher.prototype.greeting = function() {
+  console.log("greeting from Teacher")
+  console.log(this.name.first)
+}
+
+const t1 = new Teacher("josh", "last", 33, "male", "math")
+t1.greeting()
+
+//other languages of js can use things like class and extends (like java)
+
+//notes
+// static methods are commonly available on built-in browser objects and are chanined to a constructor 
+
+//creating with constructor's protoype inherits all properties defined in the prototype
+const personJohnDoe = Person("josh2", "last2", 332, "male2");
+console.log(Person.prototype)
+
+// can't run this because the method defined in the proto uses this. and below is run through the global scope
+
+// console.log(Person.prototype.greeting())
 
 
