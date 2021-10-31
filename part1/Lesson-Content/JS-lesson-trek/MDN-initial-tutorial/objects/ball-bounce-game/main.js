@@ -24,6 +24,10 @@ function Ball(x, y, velX, velY, color, size) {
 	this.velY = velY;
 	this.color = color;
 	this.size = size;
+
+	function incremementSize() {
+		this.size++;
+	}
 }
 
 //add method to Ball proto
@@ -70,7 +74,17 @@ Ball.prototype.collisionDetect = function () {
 
 			// if distance from current ball to check ball, keeping size in mind
 			if (distance < this.size + balls[j].size) {
-				balls[j].color = this.color =
+				// removes ball collided with
+				balls.splice(j, 1);
+				//50/50 chance of creating another ball (+2) or removing current ball as well (-2)
+				if (Math.random() < 0.5) {
+					spawnBalls(++currentNumBalls);
+				} else {
+					currentNumBalls--;
+				}
+
+				//change color
+				this.color =
 					"rgb(" +
 					random(0, 255) +
 					"," +
@@ -83,25 +97,36 @@ Ball.prototype.collisionDetect = function () {
 	}
 };
 
+function spawnBalls(numBalls) {
+	while (balls.length < numBalls) {
+		let size = random(10, 20);
+		let ball = new Ball(
+			// ball position always drawn at least one ball width
+			// away from the edge of the canvas, to avoid drawing errors
+			random(0 + size, width - size),
+			random(0 + size, height - size),
+			random(-7, 7),
+			random(-7, 7),
+			"rgb(" +
+				random(0, 255) +
+				"," +
+				random(0, 255) +
+				"," +
+				random(0, 255) +
+				")",
+			size
+		);
+
+		balls.push(ball);
+	}
+}
+
 //animating the ball
 //creates array of ball objects
 let balls = [];
+let currentNumBalls = 25;
 
-while (balls.length < 25) {
-	let size = random(10, 20);
-	let ball = new Ball(
-		// ball position always drawn at least one ball width
-		// away from the edge of the canvas, to avoid drawing errors
-		random(0 + size, width - size),
-		random(0 + size, height - size),
-		random(-7, 7),
-		random(-7, 7),
-		"rgb(" + random(0, 255) + "," + random(0, 255) + "," + random(0, 255) + ")",
-		size
-	);
-
-	balls.push(ball);
-}
+spawnBalls(currentNumBalls);
 
 //this is looped. draws each frame
 function loop() {
@@ -114,6 +139,9 @@ function loop() {
 		balls[i].update();
 		balls[i].collisionDetect();
 	}
+
+	console.log(currentNumBalls);
+
 	//recursively calls. infitine loop
 	requestAnimationFrame(loop);
 }
