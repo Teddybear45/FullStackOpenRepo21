@@ -17,17 +17,18 @@ function random(min, max) {
 
 // using a prototypal object instead of class to afford more flexibility
 
-function Ball(x, y, velX, velY, color, size) {
+function Shape(x, y, velX, velY, exists) {
 	this.x = x;
 	this.y = y;
 	this.velX = velX;
 	this.velY = velY;
+	this.exists = exists;
+}
+
+function Ball(x, y, velX, velY, color, size, exists) {
+	Shape.call(this, x, y, velX, velY, exists);
 	this.color = color;
 	this.size = size;
-
-	function incremementSize() {
-		this.size++;
-	}
 }
 
 //add method to Ball proto
@@ -63,28 +64,14 @@ Ball.prototype.update = function () {
 
 //collision detection
 Ball.prototype.collisionDetect = function () {
-	//iters through each ball
 	for (let j = 0; j < balls.length; j++) {
-		//makes sure check isn't current ball
-		if (!(this === balls[j])) {
-			// distance from current ball to check ball
+		if (!(this === balls[j]) && balls[j].exists) {
 			const dx = this.x - balls[j].x;
 			const dy = this.y - balls[j].y;
 			const distance = Math.sqrt(dx * dx + dy * dy);
 
-			// if distance from current ball to check ball, keeping size in mind
 			if (distance < this.size + balls[j].size) {
-				// removes ball collided with
-				balls.splice(j, 1);
-				//50/50 chance of creating another ball (+2) or removing current ball as well (-2)
-				if (Math.random() < 0.5) {
-					spawnBalls(++currentNumBalls);
-				} else {
-					currentNumBalls--;
-				}
-
-				//change color
-				this.color =
+				balls[j].color = this.color =
 					"rgb(" +
 					random(0, 255) +
 					"," +
@@ -92,6 +79,76 @@ Ball.prototype.collisionDetect = function () {
 					"," +
 					random(0, 255) +
 					")";
+			}
+		}
+	}
+};
+
+//evilcircle
+//proto constructor
+function EvilCircle(x, y, velX, velY, exists) {
+	Shape.call(this, x, y, 20, 20, exists);
+	this.color = "white";
+	this.size = 10;
+}
+//draw method
+EvilCircle.prototype.draw = function () {
+	ctx.beginPath();
+	ctx.lineWidth = 3;
+	ctx.strokeStyle = this.color;
+	ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
+	ctx.stroke();
+};
+//checkbounds method
+EvilCircle.prototype.checkBounds = function () {
+	//updates position instead of velocity
+	if (this.x + this.size >= width) {
+		this.x = -this.x;
+	}
+
+	if (this.x - this.size <= 0) {
+		this.x = -this.x;
+	}
+
+	if (this.y + this.size >= height) {
+		this.y = -this.y;
+	}
+
+	if (this.y - this.size <= 0) {
+		this.y = -this.y;
+	}
+};
+
+//controls method for EvilCircle
+EvilCircle.prototype.setControls = function () {
+	let _this = this;
+	window.onkeydown = function (e) {
+		if (e.key === "a") {
+			_this.x -= _this.velX;
+		} else if (e.key === "d") {
+			_this.x += _this.velX;
+		} else if (e.key === "w") {
+			_this.y -= _this.velY;
+		} else if (e.key === "s") {
+			_this.y += _this.velY;
+		}
+	};
+};
+
+//collision detect method
+EvilCircle.prototype.collisionDetect = function () {
+	for (let j = 0; j < balls.length; j++) {
+		if (balls[j].exists) {
+			const dx = this.x - balls[j].x;
+			const dy = this.y - balls[j].y;
+			const distance = Math.sqrt(dx * dx + dy * dy);
+
+			if (distance < this.size + balls[j].size) {
+				balls[j].exists = false;
+				// or we could remove it from the array
+
+				//incremement score counter
+				incremementScorePara();
 			}
 		}
 	}
@@ -114,7 +171,8 @@ function spawnBalls(numBalls) {
 				"," +
 				random(0, 255) +
 				")",
-			size
+			size,
+			true
 		);
 
 		balls.push(ball);
@@ -127,6 +185,16 @@ let balls = [];
 let currentNumBalls = 25;
 
 spawnBalls(currentNumBalls);
+const evilCircle = new EvilCircle(100, 300, 0, 0, true);
+evilCircle.setControls();
+
+//score element
+const scorePara = document.querySelector("p");
+let currentScore = 0;
+scorePara.innerText = 0;
+const incremementScorePara = () => {
+	scorePara.innerText = ++currentScore;
+};
 
 //this is looped. draws each frame
 function loop() {
@@ -135,12 +203,15 @@ function loop() {
 
 	//draws each ball object and updates its position
 	for (let i = 0; i < balls.length; i++) {
-		balls[i].draw();
-		balls[i].update();
-		balls[i].collisionDetect();
+		if (balls[i].exists) {
+			balls[i].draw();
+			balls[i].update();
+			balls[i].collisionDetect();
+		}
 	}
-
-	console.log(currentNumBalls);
+	evilCircle.draw();
+	evilCircle.checkBounds();
+	evilCircle.collisionDetect();
 
 	//recursively calls. infitine loop
 	requestAnimationFrame(loop);
