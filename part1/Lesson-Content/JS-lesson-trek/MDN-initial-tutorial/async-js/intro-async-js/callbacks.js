@@ -47,3 +47,6 @@ function displayImage(blob) {
 loadAsset('coffee.jpg', 'blob', displayImage);
 
 //callbacks allow you to control order the functions are run and allow data to be passed in
+
+// some callback functions are syncrhonous like forEach() which takes a callback function
+// but forEach() runs 
