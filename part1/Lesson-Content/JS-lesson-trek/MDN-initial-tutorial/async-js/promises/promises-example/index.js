@@ -1,0 +1,1 @@
+// https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Promises#explaining_basic_promise_syntax_a_real_example
