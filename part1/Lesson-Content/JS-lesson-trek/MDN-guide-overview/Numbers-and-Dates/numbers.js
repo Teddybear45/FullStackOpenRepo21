@@ -1,3 +1,3 @@
 // careful with leading zeros
-x = 0777;
-print(x);
+let x = 0777; // this is parsed as octal in non-strict mode
+console.log(x);
