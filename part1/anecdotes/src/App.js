@@ -1,5 +1,13 @@
 import React, { useState } from "react";
 
+function getRandomInRange(min, max) {
+	return Math.round(Math.random() * (max - min) + min);
+}
+
+const Anecdote = (props) => {
+	return <p>anc</p>;
+};
+
 const App = () => {
 	const anecdotes = [
 		"If it hurts, do it more often",
@@ -12,8 +20,16 @@ const App = () => {
 	];
 
 	const [selected, setSelected] = useState(0);
+	let newNum = getRandomInRange(0, anecdotes.length);
+	// setSelected(getRandomInRange(0, anecdotes.length));
+	// setSelected(1);
+	// console.log(getRandomInRange(0, anecdotes.length));
 
-	return <div>{anecdotes[selected]}</div>;
+	return (
+		<div>
+			<Anecdote />
+		</div>
+	);
 };
 
 export default App;
