@@ -1,4 +1,5 @@
 Helsinki University fullstack web development course repo
+https://fullstackopen.com/en/
 
 React, Redux, Node.js, MongoDB, GraphQL and TypeScript
 
