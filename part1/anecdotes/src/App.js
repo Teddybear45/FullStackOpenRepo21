@@ -5,7 +5,7 @@ function getRandomInRange(min, max) {
 }
 
 const Anecdote = (props) => {
-	return <p>anc</p>;
+	return <p>{props.anecdotes[props.index]}</p>;
 };
 
 const App = () => {
@@ -18,16 +18,20 @@ const App = () => {
 		"Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.",
 		"Programming without an extremely heavy use of console.log is same as if a doctor would refuse to use x-rays or blood tests when diagnosing patients",
 	];
+	const newNum = () => {
+		return getRandomInRange(0, anecdotes.length - 1);
+	};
+	const [selected, setSelected] = useState(newNum());
+	
 
-	const [selected, setSelected] = useState(0);
-	let newNum = getRandomInRange(0, anecdotes.length);
 	// setSelected(getRandomInRange(0, anecdotes.length));
 	// setSelected(1);
 	// console.log(getRandomInRange(0, anecdotes.length));
 
 	return (
 		<div>
-			<Anecdote />
+			<Anecdote index={selected} anecdotes={anecdotes} />
+			<button onClick={() => setSelected(newNum())}>new anecdote</button>
 		</div>
 	);
 };
