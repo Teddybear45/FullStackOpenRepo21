@@ -3,6 +3,7 @@ import Filter from "./components/Filter";
 import Person from "./components/Person";
 import PersonForm from "./components/PersonForm";
 import Persons from "./components/Persons";
+import axios from "axios";
 
 const App = () => {
 	const [persons, setPersons] = useState([
@@ -15,10 +16,6 @@ const App = () => {
 	const [newPhone, setNewPhone] = useState("");
 	const [newSearch, setNewSearch] = useState("");
 
-	const personsToShow = persons.filter((person) =>
-		person.name.toLowerCase().includes(newSearch.toLowerCase())
-	);
-
 	return (
 		<div>
 			<h2>Phonebook</h2>
@@ -27,15 +24,20 @@ const App = () => {
 
 			<h2>Add a new</h2>
 			<PersonForm
-        persons={persons}
+				persons={persons}
 				setPersons={setPersons}
 				newName={newName}
 				setNewName={setNewName}
 				newPhone={newPhone}
-        setNewPhone={setNewPhone}
+				setNewPhone={setNewPhone}
 			/>
 			<h2>Numbers</h2>
-      <Persons persons={persons} newSearch={newSearch}/>
+			<Persons persons={persons} newSearch={newSearch} />
+
+			{/* finding countries */}
+
+			
+
 		</div>
 	);
 };
