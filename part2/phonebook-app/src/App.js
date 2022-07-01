@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import CountriesDisplay from "./components/CountriesDisplay";
+import QueryForm from "./components/QueryForm";
+import WeatherInfo from "./components/WeatherInfo";
 
 const App = () => {
 	const [newCountryQuery, setNewCountryQuery] = useState("");
@@ -25,11 +27,15 @@ const App = () => {
 
 	return (
 		<div>
-			<div>
-				find countries:{" "}
-				<input value={newCountryQuery} onChange={handleNewCountryChangeQuery} />
-			</div>
-			<CountriesDisplay countriesToShow={countriesToShow} setCountriesToShow={setCountriesToShow} />
+			<QueryForm
+				newCountryQuery={newCountryQuery}
+				handleNewCountryChangeQuery={handleNewCountryChangeQuery}
+			/>
+
+			<CountriesDisplay
+				countriesToShow={countriesToShow}
+				setCountriesToShow={setCountriesToShow}
+			/>
 		</div>
 	);
 };

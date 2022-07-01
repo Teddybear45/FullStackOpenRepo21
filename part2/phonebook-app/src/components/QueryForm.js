@@ -1,25 +1,7 @@
 import React from "react";
 
-const QueryForm = ({
-	newCountryQuery,
-	setNewCountryQuery,
-	countries,
-	setCountriesToShow,
-}) => {
-	const handleNewCountryChangeQuery = (event) => {
-		setNewCountryQuery(event.target.value);
+const QueryForm = ({ newCountryQuery, handleNewCountryChangeQuery }) => {
 
-		setCountriesToShow(
-			countries.filter((country) =>
-				country.name.common.toLowerCase().includes(newCountryQuery)
-			)
-		);
-		console.log(
-			countries.filter((country) =>
-				country.name.common.toLowerCase().includes(newCountryQuery)
-			)
-		);
-	};
 	return (
 		<div>
 			find countries:

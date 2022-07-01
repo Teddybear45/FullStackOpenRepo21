@@ -1,6 +1,8 @@
 import React from "react";
 import CountryInfo from "./CountryInfo";
 
+
+
 const CountriesDisplay = ({ countriesToShow, setCountriesToShow }) => {
 	const handleView = (event) => {
 		console.log(event.target.value);
