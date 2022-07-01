@@ -1,11 +1,8 @@
 import React from "react";
 import CountryInfo from "./CountryInfo";
 
-
-
 const CountriesDisplay = ({ countriesToShow, setCountriesToShow }) => {
 	const handleView = (event) => {
-		console.log(event.target.value);
 
 		const singleOut = countriesToShow.filter(
 			(country) => country.name.common === event.target.value
@@ -22,8 +19,8 @@ const CountriesDisplay = ({ countriesToShow, setCountriesToShow }) => {
 	) {
 		return (
 			<ul>
-				{countriesToShow.map((country) => (
-					<li>
+				{countriesToShow.map((country, i) => (
+					<li key={i}>
 						<p>{country.name.common}</p>
 						<button onClick={handleView} value={country.name.common}>
 							view

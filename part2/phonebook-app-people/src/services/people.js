@@ -1,0 +1,23 @@
+import axios from "axios";
+const baseUrl = "http://localhost:3001/persons";
+
+const getPeople = () => {
+	return axios.get(baseUrl).then((res) => res.data);
+};
+
+const addPerson = (person) => {
+	const promise = axios.post(baseUrl, person);
+	return promise.then((res) => res.data);
+};
+
+const updatePhone = (id, changedPerson) => {
+	const promise = axios.put(`${baseUrl}/${id}`, changedPerson);
+	return promise.then((res) => res.data);
+};
+
+const deletePerson = (id) => {
+	const promise = axios.delete(`${baseUrl}/${id}`);
+	return promise;
+};
+
+export default { getPeople, addPerson, deletePerson, updatePhone };

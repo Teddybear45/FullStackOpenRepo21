@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import CountriesDisplay from "./components/CountriesDisplay";
 import QueryForm from "./components/QueryForm";
-import WeatherInfo from "./components/WeatherInfo";
+import PeopleService from "./services/people";
 
 const App = () => {
 	const [newCountryQuery, setNewCountryQuery] = useState("");
