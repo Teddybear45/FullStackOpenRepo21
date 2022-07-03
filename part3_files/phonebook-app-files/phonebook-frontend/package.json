@@ -1,5 +1,5 @@
 {
-  "name": "notes-app",
+  "name": "phonebook-app-people",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -39,5 +39,6 @@
   },
   "devDependencies": {
     "json-server": "^0.17.0"
-  }
+  },
+  "proxy": "http://localhost:3001"
 }
