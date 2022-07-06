@@ -10,7 +10,7 @@ const addPerson = (person) => {
 	return promise.then((res) => res.data);
 };
 
-const updatePhone = (id, changedPerson) => {
+const updatePerson = (id, changedPerson) => {
 	const promise = axios.put(`${baseUrl}/${id}`, changedPerson);
 	return promise.then((res) => res.data);
 };
@@ -20,4 +20,4 @@ const deletePerson = (id) => {
 	return promise;
 };
 
-export default { getPeople, addPerson, deletePerson, updatePhone };
+export default { getPeople, addPerson, deletePerson, updatePerson };

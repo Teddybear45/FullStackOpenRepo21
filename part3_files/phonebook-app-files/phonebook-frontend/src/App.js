@@ -41,7 +41,7 @@ const App = () => {
 					number: newPhone,
 				};
 				peopleService
-					.updatePhone(existingPerson.id, changedPerson)
+					.updatePerson(existingPerson.id, changedPerson)
 					.then((responseChangedPerson) => {
 						setPersons(
 							persons.map((p) =>
@@ -79,15 +79,25 @@ const App = () => {
 				number: newPhone,
 			};
 
-			peopleService.addPerson(newPersonObject).then((addedPerson) => {
-				setPersons(persons.concat(addedPerson));
-				setNewName("");
-				setNewPhone("");
-				setNotificationMessage(`Added ${addedPerson.name}`);
-				setTimeout(() => {
-					setNotificationMessage(null);
-				}, 5000);
-			});
+			peopleService
+				.addPerson(newPersonObject)
+				.then((addedPerson) => {
+					setPersons(persons.concat(addedPerson));
+					setNewName("");
+					setNewPhone("");
+					setNotificationMessage(`Added ${addedPerson.name}`);
+					setTimeout(() => {
+						setNotificationMessage(null);
+					}, 5000);
+				})
+				.catch((error) => {
+					setNotificationMessage(`${error.response.data.error}`);
+					setNotifyError(true);
+					setTimeout(() => {
+						setNotificationMessage(null);
+						setNotifyError(false);
+					}, 5000);
+				});
 		}
 	};
 
